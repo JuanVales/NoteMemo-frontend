@@ -1,0 +1,205 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Montserrat", sans-serif;
+}
+body {
+  background: #eee;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+header {
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  position: fixed;
+  background-color: #f5ba13;
+  padding: 10px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+.footer {
+  position: fixed;
+  padding-top: 10px;
+  padding-bottom: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: #f8f9fa;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  color: #ccc;
+}
+.note {
+  background: #fff;
+  border-radius: 7px;
+  width: 240px;
+  box-shadow: 0 2px 5px #ccc;
+  padding: 10px;
+  margin: 16px;
+  float: left;
+  word-wrap: break-word;
+}
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+}
+.note p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.note button {
+  position: relative;
+  float: right;
+  margin-right: 10px;
+  color: #f5ba13;
+  background-color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+}
+
+.content {
+  margin-top: 140px;
+}
+
+form.create-note {
+  position: relative;
+
+  margin: 30px auto 20px auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #f5ba13;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
+
+.nav-link {
+  font-size: 1.3em;
+  font-weight: 300;
+  color: #ffffff;
+}
+
+.register {
+  margin-bottom: 1em;
+  font-weight: 400;
+  font-size: large;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.social-button {
+  padding: 10px;
+  padding-top: 20px;
+}
+
+.nav-items {
+  display: flex;
+  padding: 0 px 5 px;
+}
+
+.user-name {
+  color: white;
+  font-size: 1.3em;
+  font-weight: 200;
+  padding-right: 50px;
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+}
+
+.nav-register {
+  font-size: 1em;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.spacer-text {
+  font-size: 70%;
+  display: flex;
+  justify-content: center;
+  height: 1.2px;
+  align-items: center;
+  margin: 30px 0px 30px -10px;
+  color: #858585;
+}
+
+.google-btn {
+  padding-left: 33%;
+}
+
+.spacer-text:before,
+.spacer-text:after {
+  background-color: #e6e6e6;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 20%;
+}
+.spacer-text:before {
+  right: 0.5em;
+  margin-left: -47%;
+}
+.spacer-text:after {
+  left: 0.5em;
+  margin-right: -50%;
+}
+
+.nav-items li {
+  padding-left: 5px;
+}
+
+.nav-button {
+  font-weight: 450;
+}
+
+@media (min-width: 500px) {
+  .create-note {
+    width: 480px;
+  }
+}
