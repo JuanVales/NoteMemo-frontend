@@ -1,50 +1,26 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/styles.css";
 import { Link } from "react-router-dom";
-import Axios from "axios";
-import SwipeableTemporaryDrawer from "../common/Drawer";
+import { useAuthentication } from "../auth/auth";
+import backEndServer from "../../config";
 
-function Header() {
-  const backEndServer = "https://notememo-backend-production.up.railway.app";
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [name, setName] = useState("");
+function Header(props) {
+  const { isLoggedIn, userInfo } = useAuthentication();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleLoginButtonClick = () => {
-    setIsDrawerOpen(!isDrawerOpen);
+    props.setIsDrawerOpen(!props.isDrawerOpen);
   };
-
-  useEffect(() => {
-    checkAuthentication();
-  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const checkAuthentication = () => {
-    Axios.get(backEndServer + "/auth/check", { withCredentials: true })
-      .then((response) => {
-        setName(response.data.name);
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsLoggedIn(false);
-      });
   };
 
   return (
     <header>
       <nav className="navbar navbar-expand-sm bg-body-tertiary">
         <div className="container-fluid">
-          <h1>
-            <Link className="nav-link" to="/">
-              NoteMemo
-            </Link>
-          </h1>
-
+          <h1>NoteMemo</h1>
           <button
             className={`navbar-toggler ${isDropdownOpen ? "active" : ""}`}
             type="button"
@@ -62,23 +38,17 @@ function Header() {
               {isLoggedIn ? (
                 <div className="nav-items">
                   <li className="nav-item">
-                    <p className="user-name">Hello, {name} </p>
+                    <p className="user-name">Hello, {userInfo}</p>
                   </li>
 
                   <li className="nav-item">
                     <a
                       className="nav-link nav-button"
-                      href={backEndServer + "/auth/logout"}
+                      href={`${backEndServer}/auth/logout`}
                       role="button"
                     >
                       Logout
                     </a>
-                  </li>
-
-                  <li className="nav-item nav-items ">
-                    <Link className="nav-link nav-button" to="/notes">
-                      Notes
-                    </Link>
                   </li>
                 </div>
               ) : (
@@ -98,10 +68,6 @@ function Header() {
           </div>
         </div>
       </nav>
-      <SwipeableTemporaryDrawer
-        handleLoginButtonClick={handleLoginButtonClick}
-        isDrawerOpen={isDrawerOpen}
-      />
     </header>
   );
 }

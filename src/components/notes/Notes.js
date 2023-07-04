@@ -1,13 +1,12 @@
 import Header from "../common/Header";
 import Footer from "../common/Footer";
-import Note from "../notes/Note";
-import AddNote from "../notes/AddNote";
+import Note from "./Note";
+import AddNote from "./AddNote";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { redirect } from "react-router-dom";
-
-const backEndServer = "https://notememo-backend-production.up.railway.app";
+import backEndServer from "../../config";
 
 function NoteMemo(event) {
   const [notes, setNotes] = useState([]);

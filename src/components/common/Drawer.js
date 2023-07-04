@@ -4,34 +4,33 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import backEndServer from "../../config";
 
-export default function SwipeableTemporaryDrawer({
-  isDrawerOpen,
-  handleLoginButtonClick,
-}) {
-  const navigateToNotes = useNavigate();
-  const backEndServer = "https://notememo-backend-production.up.railway.app";
+export default function SwipeableTemporaryDrawer(props) {
   const [failureResponse, setFailureResponse] = useState("");
   const drawerWidth = 300;
+
   async function handleLogin(event) {
     event.preventDefault();
     const user = {
       username: event.target.elements.username.value,
       password: event.target.elements.password.value,
     };
+
     Axios.post(backEndServer + "/auth/login", JSON.stringify(user), {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     })
       .then((response) => {
         if (response.status === 200) {
-          navigateToNotes("/notes");
+          window.location.reload(true);
+          props.setIsDrawerOpen(false);
         }
       })
       .catch((err) => {
         console.log("error");
+        console.log(err);
         setFailureResponse(err.response.data.message);
         console.error(err);
       });
@@ -40,8 +39,8 @@ export default function SwipeableTemporaryDrawer({
   return (
     <SwipeableDrawer
       anchor="right"
-      open={isDrawerOpen}
-      onClose={() => handleLoginButtonClick()}
+      open={props.isDrawerOpen}
+      onClose={() => props.setIsDrawerOpen(!props.isDrawerOpen)}
       PaperProps={{ style: { width: drawerWidth } }}
     >
       <div class="social-button">

@@ -3,10 +3,10 @@ import Footer from "../common/Footer";
 import Axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import backEndServer from "../../config";
 
 function Register() {
   const navigate = useNavigate();
-  const backEndServer = "https://notememo-backend-production.up.railway.app";
   const [failureResponse, setFailureResponse] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
@@ -23,7 +23,7 @@ function Register() {
     })
       .then((response) => {
         if (response.status === 200) {
-          navigate("/notes");
+          navigate("/");
         }
       })
       .catch((err) => {

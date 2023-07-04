@@ -24,14 +24,14 @@ import { Route, Routes } from "react-router-dom";
 
 import Home from "./components/pages/Home";
 import Register from "./components/auth/Register";
-import Notes from "./components/pages/Notes";
+import Notes from "./components/notes/Notes";
 
 function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/notes" element={<Notes />} />
+      <Route path="/*" element={<Home />} />
     </Routes>
   );
 }
